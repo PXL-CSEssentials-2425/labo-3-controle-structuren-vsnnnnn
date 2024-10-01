@@ -1,4 +1,79 @@
-﻿/* 
+﻿using System.ComponentModel.Design;
+using System.Security.Cryptography;
+
+Random randomNumberGenerator = new Random();
+
+int knightHealth;
+Console.WriteLine("Enter the knight's health:");
+string input = Console.ReadLine();
+
+bool isValidNumber = int.TryParse(input, out knightHealth);
+if( isValidNumber == true);
+{
+    if (knightHealth <= 0 || knightHealth > 100)
+    {
+
+    }
+    else
+    {
+        int goblinHealth = randomNumberGenerator.Next(1, 101);
+
+        Console.WriteLine($"Knight Health: {knightHealth}");
+        Console.WriteLine($"Goblin Health: {goblinHealth}");
+        Console.WriteLine();
+
+        Console.WriteLine("Available actions:");
+        Console.WriteLine("1, Attach");
+        Console.WriteLine("2, Heal");
+        Console.Write("Please select an action: ");
+        string action = Console.ReadLine();
+        int knightAttack = 10;
+        int goblinAttack = 10;
+
+        switch (action)
+        {
+            case "1":
+                goblinHealth -= knightAttack;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"You attacked the goblin for {knightAttack} damage!");
+                Console.ResetColor();
+                break;
+            case "2":
+                knightHealth += 10;
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("You healed yourself for 10 health points!");
+                Console.ResetColor();
+                break;
+            default:
+                Console.ForegroundColor= ConsoleColor.Magenta;
+                Console.WriteLine("Invalid move! Please choose a alid move");
+                Console.ResetColor();
+
+
+                break;
+        }
+    }
+
+    if (knightHealth < -0) ;
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("You lost, the knight died");
+        Console.ResetColor();
+    }
+
+    if (knightHealth < 0)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("You Won the goblin died!");
+        Console.ResetColor();
+
+    }
+
+ }
+
+
+
+/* 
  * Deel 1
  * 
  * We gaan een applicatie maken waarin de speler als ridder tegen een goblin moet vechten.
